@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "wv_cdm_api"
+version = "1.0.0"
+description = "Remote Widevine CDM API for Chrome"
+authors = ["Puyodead1 <14828766+Puyodead1@users.noreply.github.com>"]
+license = "AGPL-3.0-only"
+packages = [
+    { include = "api" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Flask = "^2.2.2"
+Cerberus = "^1.3.4"
+toml = "^0.10.2"
+
+[tool.poetry.dev-dependencies]
+isort = "^5.10.1"
+black = "^22.10.0"
+
+[tool.poetry.scripts]
+serve = 'api.main:main'
+gensecret = 'api.gensecret:main'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"

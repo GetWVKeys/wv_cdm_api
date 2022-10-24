@@ -1,0 +1,5 @@
+api_host = "0.0.0.0"
+api_port = 8080
+api_url = "https://server1.getwvkeys.cc"
+# you can use poetry run gensecret to generate a secret key
+secrets = ["testsecret123"]
