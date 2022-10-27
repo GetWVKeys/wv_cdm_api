@@ -15,9 +15,12 @@
 
 WIP Remote Widevine CDM API
 
+- Certain files are intentionally removed such as devices and wv_cvt, find them on your own if you want them.
+- `Visual C++ Redistributable Packages for Visual Studio 2013` is required for wv_cvt.
+
 # setup
 
 - `poetry config virtualenvs.in-project true`
 - `poetry install`
 - copy `config.example.toml` to `config.toml` and edit as desired
-- `poetry run serve` to start development server
+- `poetry run serve` to start development server or `poetry run waitress` to run in production.
