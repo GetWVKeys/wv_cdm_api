@@ -13,17 +13,18 @@
  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-import os
-import sys
+import binascii
 
 
-def main():
-    length = 16
-    if len(sys.argv) > 1:
-        length = int(sys.argv[1])
-    secret = os.urandom(length).hex()
-    print(f"{length} byte secret: {secret}")
+class Key:
+    def __init__(self, kid: bytes, type: str, key: bytes, permissions=[]):
+        self.kid = kid.hex()
+        self.type = type
+        self.key = binascii.hexlify(key).decode()
+        self.permissions = permissions
 
-
-if __name__ == "__main__":
-    main()
+    def __repr__(self):
+        if self.type == "OPERATOR_SESSION":
+            return "key(kid={}, type={}, key={}, permissions={})".format(self.kid, self.type, self.key, self.permissions)
+        else:
+            return "key(kid={}, type={}, key={})".format(self.kid, self.type, self.key)

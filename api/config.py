@@ -13,14 +13,31 @@
  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+import logging
 import os
+import time
+from pathlib import Path
 
-import toml
+import tomllib
 
 IS_DEVELOPMENT = bool(os.environ.get("DEVELOPMENT", False))
-parsed_toml = toml.load("config.toml")
+parsed_toml = tomllib.load(open("config.toml", "rb"))
 
+SECRET_KEY = parsed_toml.get("SECRET_KEY", "S$cR3t_K3y")
 API_HOST = parsed_toml.get("API_HOST")
 API_PORT = int(parsed_toml.get("API_PORT", 8080))
 API_URL = parsed_toml.get("API_URL", "https://server1.getwvkeys.cc")
 API_SECRETS = parsed_toml.get("API_SECRETS", [])
+
+CONSOLE_LOG_LEVEL = logging.DEBUG
+FILE_LOG_LEVEL = logging.DEBUG
+LOG_FORMAT = parsed_toml.get("LOG_FORMAT", "[%(asctime)s] [%(name)s] [%(funcName)s:%(lineno)d] %(levelname)s: %(message)s")
+LOG_DATE_FORMAT = parsed_toml.get("LOG_DATE_FORMAT", "%I:%M:%S")
+LOG_FILE_PATH = Path(os.getcwd(), "logs", f"{time.strftime('%Y-%m-%d')}.log")
+
+CHALLENGES_DIR_PATH = Path(os.getcwd(), "challenges")
+CHALLENGES_DIR_PATH.mkdir(exist_ok=True, parents=True)
+
+WV_CVT = Path(os.getcwd(), "pywidevine", "wv_cvt.exe")
+
+DISABLE_INFO_ROUTE = bool(parsed_toml.get("DISABLE_INFO_ROUTE", False))

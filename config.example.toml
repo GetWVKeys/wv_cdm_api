@@ -1,5 +1,8 @@
-api_host = "0.0.0.0"
-api_port = 8080
-api_url = "https://server1.getwvkeys.cc"
-# you can use poetry run gensecret to generate a secret key
-secrets = ["testsecret123"]
+API_HOST = "0.0.0.0"
+API_PORT = 8080
+API_URL = "https://server1.getwvkeys.cc"
+API_SECRETS = ["testsecret123"] # poetry run gensecret 16
+SECRET_KEY = "myawesomesecret" # poetry run gensecret 32
+DISABLE_INFO_ROUTE = false
+LOG_DATE_FORMAT = "%I:%M:%S"
+LOG_FORMAT= "[%(asctime)s] [%(name)s] [%(funcName)s:%(lineno)d] %(levelname)s: %(message)s"
