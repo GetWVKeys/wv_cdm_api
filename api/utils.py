@@ -103,8 +103,13 @@ def construct_logger():
     file_handler.setFormatter(file_formatter)
     file_handler.setLevel(config.FILE_LOG_LEVEL)
 
-    # construct the logger
+    # configure the root logger
     logger = logging.getLogger()
+    logger.setLevel(config.CONSOLE_LOG_LEVEL)
+    logger.addHandler(stream)
+
+    # construct the logger
+    logger = logging.getLogger("getwvkeys")
     logger.setLevel(config.CONSOLE_LOG_LEVEL)
     logger.addHandler(stream)
     logger.addHandler(file_handler)
