@@ -168,5 +168,11 @@ def main():
     app.run(config.API_HOST, config.API_PORT, debug=config.IS_DEVELOPMENT, use_reloader=False)
 
 
+def waitress():
+    from waitress import serve
+
+    serve(app, host=config.API_HOST, port=config.API_PORT)
+
+
 if __name__ == "__main__":
     main()
