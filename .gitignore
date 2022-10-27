@@ -135,3 +135,5 @@ pywidevine/cdm/devices/*
 pywidevine/wv_cvt.exe
 pywidevine/*.dll
 config.toml
+web.config
+run.bat
