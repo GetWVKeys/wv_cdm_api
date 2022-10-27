@@ -39,5 +39,7 @@ CHALLENGES_DIR_PATH = Path(os.getcwd(), "challenges")
 CHALLENGES_DIR_PATH.mkdir(exist_ok=True, parents=True)
 
 WV_CVT = Path(os.getcwd(), "pywidevine", "wv_cvt.exe")
+if not WV_CVT.exists():
+    raise FileNotFoundError("wv_cvt.exe is missing")
 
 DISABLE_INFO_ROUTE = bool(parsed_toml.get("DISABLE_INFO_ROUTE", False))
